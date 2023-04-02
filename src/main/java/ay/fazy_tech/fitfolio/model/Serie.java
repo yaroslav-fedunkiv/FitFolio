@@ -8,7 +8,6 @@ import lombok.Setter;
 import org.hibernate.annotations.DynamicInsert;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,28 +15,20 @@ import java.util.List;
 @Getter
 @Entity
 @DynamicInsert
-public class Workout {
+public class Serie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
-    //@ManyToMany todo
-//    private List<Exercise> exercises; todo
     @Column
-//    @OneToMany todo
-    private Client client;
-
-    private Serie series;
+    private Exercise exercise;
+    @Column
     private int reps;
     @Column
-    private String description;
+    private double weight;
     @Column
-    private int duration;
-    @Column(columnDefinition = "timestamp default now()")
+    private Unit unit;
+    @Column
     private LocalDateTime created;
-    @Column(columnDefinition = "timestamp default now()")
-    private LocalDateTime updated;
-    @Column(columnDefinition = "boolean default true")
-    private boolean isActive;
 
 }

@@ -10,6 +10,7 @@ import org.hibernate.annotations.DynamicInsert;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -37,7 +38,7 @@ public class Client {
     @Column(columnDefinition = "varchar(10) default 'CLIENT_ROLE'")
     private Role role;
 //    @ManyToMany
-    private WorkoutProgram workoutProgram;
+    private List<WorkoutProgram> workoutProgram;
 
     @Column(nullable = false)
     private String email;
@@ -51,5 +52,4 @@ public class Client {
     private LocalDateTime updated;
     @Column(columnDefinition = "boolean default true")
     private boolean isActive;
-
 }
