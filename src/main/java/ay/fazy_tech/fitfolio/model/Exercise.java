@@ -1,13 +1,16 @@
 package ay.fazy_tech.fitfolio.model;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.DynamicInsert;
 
+import javax.persistence.*;
+import javax.validation.constraints.Pattern;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,7 +21,7 @@ import java.time.LocalDateTime;
 public class Exercise {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
+    @Column(name = "exercise_id")
     private Long id;
     @Column
     private String title;
@@ -30,6 +33,13 @@ public class Exercise {
     private BodyPart bodyPart;
     @Column
     private Category category;
+
+    @OneToMany(mappedBy = "exercise")
+    private List<Serie> series;
+
+    @ManyToOne
+    @JoinColumn(name="workout_id", nullable=false)
+    private Workout workout;
 
     @Column(columnDefinition = "timestamp default now()")
     private LocalDateTime created;

@@ -1,12 +1,12 @@
 package ay.fazy_tech.fitfolio.model;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.DynamicInsert;
 
+import javax.persistence.*;
 import java.util.List;
 
 @AllArgsConstructor
@@ -20,7 +20,6 @@ public class WorkoutProgram {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
-    private List<Exercise> exercises;
-
 //    private List<Exercise> exercises;
+
 }

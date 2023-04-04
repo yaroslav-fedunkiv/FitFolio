@@ -1,13 +1,15 @@
 package ay.fazy_tech.fitfolio.model;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.Pattern;
+//import jakarta.persistence.*;
+//import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.DynamicInsert;
 
+import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -21,7 +23,7 @@ import java.util.List;
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
+    @Column(name = "client_id")
     private Long id;
     @Column(nullable = false)
     private String fullName;
@@ -37,8 +39,11 @@ public class Client {
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "varchar(10) default 'CLIENT_ROLE'")
     private Role role;
-//    @ManyToMany
-    private List<WorkoutProgram> workoutProgram;
+
+    @OneToMany(mappedBy = "clientEntity")
+    private List<Workout> workouts;
+
+//    private List<WorkoutProgram> workoutProgram; //todo
 
     @Column(nullable = false)
     private String email;
