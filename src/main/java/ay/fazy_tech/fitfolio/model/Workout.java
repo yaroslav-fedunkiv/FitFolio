@@ -7,8 +7,6 @@ import lombok.Setter;
 import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
-import javax.validation.constraints.Pattern;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -23,14 +21,11 @@ public class Workout {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "workout_id")
     private Long id;
-
     @OneToMany(mappedBy="workout")
     private List<Exercise> exercises;
-
     @ManyToOne
     @JoinColumn(name="client_id", nullable=false)
     private Client clientEntity;
-
     @Column
     private String description;
     @Column
@@ -41,5 +36,4 @@ public class Workout {
     private LocalDateTime updated;
     @Column(columnDefinition = "boolean default true")
     private boolean isActive;
-
 }

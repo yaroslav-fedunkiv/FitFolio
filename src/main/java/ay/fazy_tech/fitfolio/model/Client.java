@@ -1,7 +1,5 @@
 package ay.fazy_tech.fitfolio.model;
 
-//import jakarta.persistence.*;
-//import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,9 +7,6 @@ import lombok.Setter;
 import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
-import javax.validation.constraints.Pattern;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @AllArgsConstructor
@@ -25,36 +20,17 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "client_id")
     private Long id;
-    @Column(nullable = false)
-    private String fullName;
-    @Column
-    private LocalDate dob; //date of birth
-    @Column
-    private double weight;
-    @Column
-    private int height;
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Sex sex;
-    @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "varchar(10) default 'CLIENT_ROLE'")
-    private Role role;
 
     @OneToMany(mappedBy = "clientEntity")
     private List<Workout> workouts;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", nullable = false)
+    private Credentials credentials;
+
+    @ManyToMany(mappedBy = "clients")
+    private List<Coach> coaches;
+
 
 //    private List<WorkoutProgram> workoutProgram; //todo
 
-    @Column(nullable = false)
-    private String email;
-    @Column(nullable = false)
-    @Pattern(regexp = "(^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=\"])(?=\\S+$).{8,}$)|(^(?=.*\\d)(?=.*[а-я])(?=.*[А-Я])(?=.*[@#$%^&+=\"])(?=\\S+$).{8,}$)",
-            message = "{user.wrong.password}")
-    private String password;
-    @Column(columnDefinition = "timestamp default now()")
-    private LocalDateTime created;
-    @Column(columnDefinition = "timestamp default now()")
-    private LocalDateTime updated;
-    @Column(columnDefinition = "boolean default true")
-    private boolean isActive;
 }

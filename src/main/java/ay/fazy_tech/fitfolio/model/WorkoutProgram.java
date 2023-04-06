@@ -20,6 +20,12 @@ public class WorkoutProgram {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
-//    private List<Exercise> exercises;
+
+    @ManyToOne
+    @JoinColumn(name="coach_id", nullable=false)
+    private Coach coach;
+
+    //ManyToOne
+//    private List<Workout> exercises;
 
 }
