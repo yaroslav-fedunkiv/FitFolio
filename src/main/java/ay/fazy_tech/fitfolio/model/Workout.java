@@ -26,6 +26,9 @@ public class Workout {
     @ManyToOne
     @JoinColumn(name="client_id", nullable=false)
     private Client clientEntity;
+
+    @ManyToMany(mappedBy = "workouts")
+    private List<WorkoutProgram> workoutPrograms;
     @Column
     private String description;
     @Column

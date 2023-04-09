@@ -25,7 +25,7 @@ public class Client {
     private List<Workout> workouts;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", nullable = false)
-    private Credentials credentials;
+    private User user;
 
     @ManyToMany(mappedBy = "clients")
     private List<Coach> coaches;

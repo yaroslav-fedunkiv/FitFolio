@@ -22,8 +22,8 @@ public class Coach {
     private Long id;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "credentials_id", nullable = false)
-    private Credentials credentials;
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @ManyToMany
     @JoinTable(name = "clients_couches",

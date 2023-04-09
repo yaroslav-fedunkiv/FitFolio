@@ -16,11 +16,12 @@ import java.time.LocalDateTime;
 @Setter
 @Getter
 @Entity
+@Table(name = "user_table")
 @DynamicInsert
-public class Credentials {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "credentials_id")
+    @Column(name = "user_id")
     private Long id;
     @Column(nullable = false)
     private String fullName;
@@ -39,13 +40,11 @@ public class Credentials {
     @Column(nullable = false)
     private String email;
 
-    @OneToOne(mappedBy = "clientData")
+    @OneToOne(mappedBy = "user")
     private Client currentClient;
 
-    @OneToOne(mappedBy = "coachData")
+    @OneToOne(mappedBy = "user")
     private Coach coach;
-
-
     @Column(nullable = false)
     @Pattern(regexp = "(^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=\"])(?=\\S+$).{8,}$)|(^(?=.*\\d)(?=.*[а-я])(?=.*[А-Я])(?=.*[@#$%^&+=\"])(?=\\S+$).{8,}$)",
             message = "{user.wrong.password}")

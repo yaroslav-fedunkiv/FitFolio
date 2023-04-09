@@ -18,14 +18,17 @@ import java.util.List;
 public class WorkoutProgram {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
+    @Column(name = "workout_program_id")
     private Long id;
 
     @ManyToOne
     @JoinColumn(name="coach_id", nullable=false)
     private Coach coach;
 
-    //ManyToOne
-//    private List<Workout> exercises;
+    @ManyToMany
+    @JoinTable(name = "programs",
+            joinColumns = @JoinColumn(name = "workout_program_id"),
+            inverseJoinColumns = @JoinColumn(name = "workout_id"))
+    private List<Workout> workouts;
 
 }
