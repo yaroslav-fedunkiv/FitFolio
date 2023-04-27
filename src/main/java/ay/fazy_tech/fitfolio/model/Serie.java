@@ -23,7 +23,6 @@ public class Serie {
     @ManyToOne
     @JoinColumn(name="exercise_id", nullable=false)
     private Exercise exercise;
-
     @Column
     private int reps;
     @Column
@@ -36,5 +35,4 @@ public class Serie {
     private LocalDateTime created;
     @Column
     private LocalDateTime updated;
-
 }

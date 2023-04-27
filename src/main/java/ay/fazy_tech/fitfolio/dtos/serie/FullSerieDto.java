@@ -1,4 +1,4 @@
-package ay.fazy_tech.fitfolio.dto.serie;
+package ay.fazy_tech.fitfolio.dtos.serie;
 
 import lombok.*;
 

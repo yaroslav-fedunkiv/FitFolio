@@ -41,13 +41,14 @@ public class ClientServiceImpl implements ClientService {
     @Override
     @Transactional
     public Optional<ClientFullDto> getClientById(String id) {
-        log.info("Start method getClientById with id: {}", id);
-        try {
-            return Optional.of(mapper.map(clientRepository.findClientByEmail(id), ClientFullDto.class));
-        } catch (IllegalArgumentException ex) {
-            log.info("Client with id {} wasn't found! ", id);
-            throw new NoSuchElementException();
-        }
+//        log.info("Start method getClientById with id: {}", id);
+//        try {
+//            return Optional.of(mapper.map(clientRepository.findClientByEmail(id), ClientFullDto.class));
+//        } catch (IllegalArgumentException ex) {
+//            log.info("Client with id {} wasn't found! ", id);
+//            throw new NoSuchElementException();
+//        }
+        return null;
     }
 
     @Override

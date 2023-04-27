@@ -39,7 +39,6 @@ public class UserServiceImpl implements UserService {
         log.info("Start method  deactivateUser with the email {}", email);
         UserFullDto userDto = getUserByEmail(email).orElseThrow();
         Optional<User> user = userRepository.findById(Long.valueOf((userDto.getId())));
-        userRepository.updateStatus(email);
         user.orElseThrow().setActive(false);
         User deactivatedUser = userRepository.save(user.orElseThrow());
         log.info("User {} is deactivated", email);

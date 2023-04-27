@@ -25,6 +25,10 @@ public class WorkoutProgram {
     @JoinColumn(name="coach_id", nullable=false)
     private Coach coach;
 
+    @ManyToOne
+    @JoinColumn(name="client_id", nullable=false)
+    private Client client;
+
     @ManyToMany
     @JoinTable(name = "programs",
             joinColumns = @JoinColumn(name = "workout_program_id"),

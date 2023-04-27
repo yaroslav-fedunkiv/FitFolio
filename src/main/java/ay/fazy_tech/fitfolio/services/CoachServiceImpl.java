@@ -46,7 +46,8 @@ public class CoachServiceImpl implements CoachService {
     public Optional<CoachFullDto> getCoachByUser(String user) {
         log.info("Start method getCoachByUser with user: {}", user);
         try {
-            return Optional.of(mapper.map(coachRepository.findCoachByUser(user), CoachFullDto.class));
+            return null;
+//            return Optional.of(mapper.map(coachRepository.findCoachByUser(user), CoachFullDto.class));
         } catch (IllegalArgumentException ex) {
             log.info("Coach with user {} wasn't found! ", user);
             throw new NoSuchElementException();

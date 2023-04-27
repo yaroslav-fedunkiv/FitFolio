@@ -1,7 +1,7 @@
 package ay.fazy_tech.fitfolio.services;
 
-import ay.fazy_tech.fitfolio.dto.serie.CreateSerieDto;
-import ay.fazy_tech.fitfolio.dto.serie.FullSerieDto;
+import ay.fazy_tech.fitfolio.dtos.serie.CreateSerieDto;
+import ay.fazy_tech.fitfolio.dtos.serie.FullSerieDto;
 
 import java.util.List;
 

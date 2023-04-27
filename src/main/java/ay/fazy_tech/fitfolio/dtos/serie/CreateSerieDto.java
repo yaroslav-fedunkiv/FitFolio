@@ -1,4 +1,4 @@
-package ay.fazy_tech.fitfolio.dto.serie;
+package ay.fazy_tech.fitfolio.dtos.serie;
 
 import lombok.*;
 
@@ -12,5 +12,5 @@ public class CreateSerieDto {
     private String reps;
     private String weight;
     private String unit;
-//    private String exercise_id;
+    private String exerciseId;
 }
