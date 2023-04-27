@@ -30,7 +30,6 @@ public class Client {
     @ManyToMany(mappedBy = "clients")
     private List<Coach> coaches;
 
-
 //    private List<WorkoutProgram> workoutProgram; //todo
 
 }
