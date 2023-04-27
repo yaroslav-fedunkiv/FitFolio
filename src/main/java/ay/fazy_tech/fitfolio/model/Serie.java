@@ -7,10 +7,7 @@ import lombok.Setter;
 import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
-import javax.validation.constraints.Pattern;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -30,10 +27,14 @@ public class Serie {
     @Column
     private int reps;
     @Column
+    private int previousReps;
+    @Column
     private double weight;
     @Column
     private Unit unit;
     @Column
     private LocalDateTime created;
+    @Column
+    private LocalDateTime updated;
 
 }
