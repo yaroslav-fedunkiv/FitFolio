@@ -12,6 +12,6 @@ public class UserUpdateDto {
     private String newEmail;
     private String fullName;
     private String weight;
-    private String coach; //todo
+    private String coachId; //todo
 
 }

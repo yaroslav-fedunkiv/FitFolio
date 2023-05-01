@@ -24,7 +24,7 @@ public class Client {
     @OneToMany(mappedBy = "clientEntity")
     private List<Workout> workouts;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToMany(mappedBy = "clients")

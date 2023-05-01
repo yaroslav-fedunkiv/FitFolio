@@ -8,7 +8,6 @@ import org.springframework.data.repository.query.Param;
 
 public interface CoachRepository extends JpaRepository<Coach, Long>  {
 
-//    @Query(value = "select c from coach c where c.user = ?1")
-//    User findCoachByUser(@Param(value = "user") String user);
+//    Coach findCoachByUserId( String userId);
 
 }

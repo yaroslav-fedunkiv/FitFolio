@@ -32,23 +32,22 @@ public class ClientServiceImpl implements ClientService {
     @Override
     @Transactional
     public Optional<ClientFullDto> createClient(ClientCreateDto clientCreateDto) {
-        log.info("Start method createClient with user id {}", clientCreateDto.getUser());
+        log.info("Start method createClient with user id {}", clientCreateDto.getUserId());
         clientRepository.save(mapper.map(clientCreateDto, Client.class));
-        log.info("User with the email {} is created successfully", clientCreateDto.getUser());
-        return getClientById(clientCreateDto.getUser());
+        log.info("Client with the user ID {} is created successfully", clientCreateDto.getUserId());
+        return getClientById(clientCreateDto.getUserId());
     }
 
     @Override
     @Transactional
     public Optional<ClientFullDto> getClientById(String id) {
-//        log.info("Start method getClientById with id: {}", id);
-//        try {
-//            return Optional.of(mapper.map(clientRepository.findClientByEmail(id), ClientFullDto.class));
-//        } catch (IllegalArgumentException ex) {
-//            log.info("Client with id {} wasn't found! ", id);
-//            throw new NoSuchElementException();
-//        }
-        return null;
+        log.info("Start method getClientById with id: {}", id);
+        try {
+            return Optional.of(mapper.map(clientRepository.findById(Long.parseLong(id)), ClientFullDto.class));
+        } catch (IllegalArgumentException ex) {
+            log.info("Client with id {} wasn't found! ", id);
+            throw new NoSuchElementException();
+        }
     }
 
     @Override

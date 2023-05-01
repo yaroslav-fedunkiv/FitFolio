@@ -17,7 +17,7 @@ import java.util.List;
 @ToString
 public class CoachCreateDto {
     @NotNull
-    private String user;
+    private String userId;
     @NotNull
     private List<Client> clients;
     @NotNull

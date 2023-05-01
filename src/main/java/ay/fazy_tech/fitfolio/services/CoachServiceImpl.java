@@ -37,19 +37,18 @@ public class CoachServiceImpl implements CoachService {
     public Optional<CoachFullDto> createCoach(CoachCreateDto coachCreateDto) {
         log.info("Start method createCoach ");
         coachRepository.save(mapper.map(coachCreateDto, Coach.class));
-        log.info("Coach with the user{} is created successfully", coachCreateDto.getUser());
-        return getCoachByUser(coachCreateDto.getUser());
+        log.info("Coach with the user{} is created successfully", coachCreateDto.getUserId());
+        return getCoachByUser(coachCreateDto.getUserId());
     }
 
     @Override
     @Transactional
-    public Optional<CoachFullDto> getCoachByUser(String user) {
-        log.info("Start method getCoachByUser with user: {}", user);
+    public Optional<CoachFullDto> getCoachByUser(String userId) {
+        log.info("Start method getCoachByUser with the user id: {}", userId);
         try {
-            return null;
-//            return Optional.of(mapper.map(coachRepository.findCoachByUser(user), CoachFullDto.class));
+           return Optional.of(mapper.map(coachRepository.findById(Long.parseLong(userId)), CoachFullDto.class));
         } catch (IllegalArgumentException ex) {
-            log.info("Coach with user {} wasn't found! ", user);
+            log.info("Coach with the user id {} wasn't found! ", userId);
             throw new NoSuchElementException();
         }
     }

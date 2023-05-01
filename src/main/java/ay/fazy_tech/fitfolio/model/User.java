@@ -23,7 +23,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Long id;
-    @Column(nullable = false)
+    @Column
     private String fullName;
     @Column
     private LocalDate dob; //date of birth
@@ -32,15 +32,15 @@ public class User {
     @Column
     private int height;
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column
     private Sex sex;
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "varchar(20) default 'CLIENT_ROLE'")
     private Role userRole;
-    @Column(nullable = false)
+    @Column
     private String email;
 
-    @Column(nullable = false)
+    @Column
     private String userName;
 
     @OneToOne(mappedBy = "user")
@@ -48,9 +48,7 @@ public class User {
 
     @OneToOne(mappedBy = "user")
     private Coach coach;
-    @Column(nullable = false)
-    @Pattern(regexp = "(^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=\"])(?=\\S+$).{8,}$)|(^(?=.*\\d)(?=.*[а-я])(?=.*[А-Я])(?=.*[@#$%^&+=\"])(?=\\S+$).{8,}$)",
-            message = "{user.wrong.password}")
+    @Column
     private String password;
     @Column(columnDefinition = "timestamp default now()")
     private LocalDateTime created;

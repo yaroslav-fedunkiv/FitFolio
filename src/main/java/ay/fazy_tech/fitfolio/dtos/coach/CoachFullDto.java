@@ -18,7 +18,7 @@ import java.util.List;
 
 public class CoachFullDto {
     private String id;
-    private String user;
+    private String userId;
     private List<Client> clients;
     private List<WorkoutProgram> workoutPrograms;
 }

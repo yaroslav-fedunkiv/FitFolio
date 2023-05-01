@@ -2,8 +2,6 @@ package ay.fazy_tech.fitfolio.dtos.user;
 
 import lombok.*;
 
-import javax.validation.constraints.NotNull;
-
 @Getter
 @Setter
 @AllArgsConstructor
@@ -19,11 +17,11 @@ public class UserFullDto {
     private String sex;
     private String userRole;
     private String email;
-    private String currentClient;
-    private String coach;
+    private String currentClientId;
     private String password;
     private String created;
     private String updated;
     private String isActive;
     private String userName;
+    private String coachId;
 }

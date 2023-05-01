@@ -16,11 +16,11 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 public class ClientCreateDto {
+//    @NotNull
+//    private List<Workout> workouts;
     @NotNull
-    private List<Workout> workouts;
-    @NotNull
-    private String user;
-    @NotNull
-    private List<Coach> coaches;
+    private String userId;
+//    @NotNull
+//    private List<Coach> coaches;
     //    private List<WorkoutProgram> workoutProgram; //todo
 }
