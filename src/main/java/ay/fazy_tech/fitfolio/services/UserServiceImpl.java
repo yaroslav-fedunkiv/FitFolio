@@ -28,9 +28,12 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public Optional<UserFullDto> createUser(UserCreateDto userCreateDto) {
         log.info("Start method createUser with the email {}", userCreateDto.getEmail());
-        userRepository.save(mapper.map(userCreateDto, User.class));
+        User user = mapper.map(userCreateDto, User.class);
+        log.error("User object ==> "+user);
+
+        userRepository.save(user);
         log.info("User with the email {} is created successfully", userCreateDto.getEmail());
-        return getUserByEmail(userCreateDto.getEmail());
+        return Optional.empty();
     }
 
     @Transactional

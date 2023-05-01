@@ -12,22 +12,10 @@ import java.util.Optional;
 
 @Service
 public interface UserService {
-
-    @Transactional
     Optional<UserFullDto> createUser(UserCreateDto userCreateDto);
-
-    @Modifying
-    @Transactional
     UserFullDto deactivateUser(String phoneNumber);
-
-    @Transactional
     Optional<UserFullDto> getUserByEmail(String email);
-    @Modifying
-    @Transactional
     UserUpdateDto updateUser(UserUpdateDto userUpdateDto, String email);
-
-    @Transactional
     List<UserFullDto> getAllUsers();
-
     boolean isStatusActive(String email);
 }

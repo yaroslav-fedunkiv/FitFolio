@@ -29,6 +29,8 @@ public class UserCreateDto {
     @NotNull
     private String height;
     @NotNull
+    private String weight;
+    @NotNull
   //  @Size(min = 6, max = 20)
   //  @Pattern(regexp = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})")
     private String password;
