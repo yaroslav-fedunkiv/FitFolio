@@ -21,16 +21,18 @@ public class Workout {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "workout_id")
     private Long id;
+    @ManyToOne
+    @JoinColumn(name="workout_template_id", nullable=false)
+    private WorkoutTemplate workoutTemplate;
+
     @OneToMany(mappedBy="workout")
     private List<Exercise> exercises;
     @ManyToOne
     @JoinColumn(name="client_id", nullable=false)
     private Client clientEntity;
 
-    @ManyToMany(mappedBy = "workouts")
-    private List<WorkoutProgram> workoutPrograms;
-    @Column
-    private String description;
+//    @ManyToMany(mappedBy = "workouts")
+//    private List<WorkoutProgram> workoutPrograms;
     @Column
     private int duration; // time of doing workout
     @Column(columnDefinition = "timestamp default now()")

@@ -4,6 +4,11 @@ import ay.fazy_tech.fitfolio.dtos.client.ClientCreateDto;
 import ay.fazy_tech.fitfolio.dtos.client.ClientFullDto;
 import ay.fazy_tech.fitfolio.dtos.user.UserCreateDto;
 import ay.fazy_tech.fitfolio.dtos.user.UserFullDto;
+import ay.fazy_tech.fitfolio.model.BodyPart;
+import ay.fazy_tech.fitfolio.model.Category;
+import ay.fazy_tech.fitfolio.model.Exercise;
+import ay.fazy_tech.fitfolio.model.ExerciseTemplate;
+import ay.fazy_tech.fitfolio.repositories.ExerciseRepository;
 import ay.fazy_tech.fitfolio.services.ClientService;
 import ay.fazy_tech.fitfolio.services.SerieService;
 import ay.fazy_tech.fitfolio.services.UserService;
@@ -19,7 +24,8 @@ public class FitFolioApplication {
         SpringApplication.run(FitFolioApplication.class, args);
     }
     @Bean()
-    CommandLineRunner init(ClientService clientService, UserService userService) {
+    CommandLineRunner init(ClientService clientService, UserService userService
+            , ExerciseRepository exerciseRepository) {
         return args -> {
             UserCreateDto userCreateDto = new UserCreateDto();
             userCreateDto.setFullName("Ann Zelener");
@@ -40,6 +46,15 @@ public class FitFolioApplication {
 
             clientCreateDto.setUserId(user.getId());
             clientService.createClient(clientCreateDto);
+
+
+//            ExerciseTemplate exerciseTemplate = new ExerciseTemplate();
+//            exerciseTemplate.setTitle("Pull up");
+//            exerciseTemplate.setDescription("Do Pull up right");
+//            exerciseTemplate.setImage("some image");
+//            exerciseTemplate.setBodyPart(BodyPart.ARMS);
+//            exerciseTemplate.setCategory(Category.REPS_ONLY);
+//            exerciseRepository.save(exerciseTemplate);
         };
     }
 

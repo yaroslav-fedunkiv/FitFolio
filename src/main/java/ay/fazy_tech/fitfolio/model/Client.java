@@ -33,4 +33,10 @@ public class Client {
     @OneToMany(mappedBy = "client")
     private List<WorkoutProgram> workoutProgram;
 
+    @ManyToMany
+    @JoinTable(name = "clients_exercise_templates",
+            joinColumns = @JoinColumn(name = "client_id"),
+            inverseJoinColumns = @JoinColumn(name = "exercise_template_id"))
+    private List<ExerciseTemplate> exerciseTemplates;
+
 }

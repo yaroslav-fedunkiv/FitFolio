@@ -32,7 +32,6 @@ public class WorkoutProgram {
     @ManyToMany
     @JoinTable(name = "programs",
             joinColumns = @JoinColumn(name = "workout_program_id"),
-            inverseJoinColumns = @JoinColumn(name = "workout_id"))
-    private List<Workout> workouts;
-
+            inverseJoinColumns = @JoinColumn(name = "workout_template_id"))
+    private List<WorkoutTemplate> workouts;
 }

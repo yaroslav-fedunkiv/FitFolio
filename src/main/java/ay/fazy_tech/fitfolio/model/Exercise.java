@@ -23,22 +23,19 @@ public class Exercise {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "exercise_id")
     private Long id;
-    @Column
-    private String title;
-    @Column
-    private String description;
-    @Column
-    private String image;
-    @Column
-    private BodyPart bodyPart;
-    @Column
-    private Category category;
 
     @OneToMany(mappedBy = "exercise")
     private List<Serie> series;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "exercise_template_id")
+    private ExerciseTemplate exerciseTemplate;
+
+
+    //todo client field
+
     @ManyToOne
-    @JoinColumn(name="workout_id", nullable=false)
+    @JoinColumn(name="workout_id")
     private Workout workout;
 
     @Column(columnDefinition = "timestamp default now()")
