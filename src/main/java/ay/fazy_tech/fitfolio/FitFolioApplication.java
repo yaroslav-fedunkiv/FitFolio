@@ -33,13 +33,13 @@ public class FitFolioApplication {
             userCreateDto.setPasswordConfirmed("Password12345");
             userService.createUser(userCreateDto);
 
-//            UserFullDto user = userService.getUserByEmail(userCreateDto.getEmail()).orElseThrow();
-//
-//            System.out.println(user);
-//            ClientCreateDto clientCreateDto = new ClientCreateDto();
-//
-//            clientCreateDto.setUserId(user.getId());
-//            clientService.createClient(clientCreateDto);
+            UserFullDto user = userService.getUserByEmail(userCreateDto.getEmail()).orElseThrow();
+
+            System.out.println(user);
+            ClientCreateDto clientCreateDto = new ClientCreateDto();
+
+            clientCreateDto.setUserId(user.getId());
+            clientService.createClient(clientCreateDto);
         };
     }
 

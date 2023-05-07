@@ -32,7 +32,7 @@ public class Workout {
     @Column
     private String description;
     @Column
-    private int duration;
+    private int duration; // time of doing workout
     @Column(columnDefinition = "timestamp default now()")
     private LocalDateTime created;
     @Column(columnDefinition = "timestamp default now()")
