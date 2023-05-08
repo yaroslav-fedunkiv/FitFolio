@@ -27,8 +27,10 @@ public class ExerciseTemplate {
     @Column
     private String image;
     @Column
+    @Enumerated(EnumType.STRING)
     private BodyPart bodyPart;
     @Column
+    @Enumerated(EnumType.STRING)
     private Category category;
     @OneToMany(mappedBy = "exerciseTemplate")
     private List<Exercise> exercise;
