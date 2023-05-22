@@ -1,7 +1,7 @@
 package ay.fazy_tech.fitfolio.services;
 
-import ay.fazy_tech.fitfolio.dtos.serie.CreateSerieDto;
-import ay.fazy_tech.fitfolio.dtos.serie.FullSerieDto;
+import ay.fazy_tech.fitfolio.dtos.serie.SerieCreateDto;
+import ay.fazy_tech.fitfolio.dtos.serie.SerieFullDto;
 import ay.fazy_tech.fitfolio.model.Serie;
 import ay.fazy_tech.fitfolio.model.Unit;
 import ay.fazy_tech.fitfolio.repositories.SerieRepository;
@@ -11,6 +11,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Log4j2
 @Service
@@ -20,13 +21,13 @@ public class SerieServiceImpl implements SerieService{
     private final ModelMapper mapper;
 
     @Override
-    public FullSerieDto createSerie(CreateSerieDto createSerieDto) { //fixme
-        Serie serie = serieRepository.save(mapper.map(createSerieDto, Serie.class));
-        return mapper.map(serie, FullSerieDto.class);
+    public SerieFullDto createSerie(SerieCreateDto serieCreateDto) { //fixme
+        Serie serie = serieRepository.save(mapper.map(serieCreateDto, Serie.class));
+        return mapper.map(serie, SerieFullDto.class);
     }
 
     @Override
-    public void updateSerie(CreateSerieDto updatedSerie, String id) {
+    public void updateSerie(SerieCreateDto updatedSerie, String id) {
         Serie serie = serieRepository.findById(Long.parseLong(id)).orElseThrow();
         String previousReps = (updatedSerie.getPreviousReps() == null || updatedSerie.getPreviousReps().equals("")
                 ? String.valueOf(serie.getPreviousReps()) : updatedSerie.getPreviousReps());
@@ -46,13 +47,15 @@ public class SerieServiceImpl implements SerieService{
     }
 
     @Override
-    public List<FullSerieDto> getAll() {
-        return null;
+    public List<SerieFullDto> getAll() {
+        return serieRepository.findAll().stream()
+                .map(el -> mapper.map(el, SerieFullDto.class))
+                .collect(Collectors.toList());
     }
 
     @Override
-    public FullSerieDto getById(String id) {
-        return null;
+    public SerieFullDto getById(String id) {
+        return mapper.map(serieRepository.findById(Long.parseLong(id)), SerieFullDto.class);
     }
 
     @Override

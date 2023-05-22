@@ -1,14 +1,14 @@
 package ay.fazy_tech.fitfolio.services;
 
-import ay.fazy_tech.fitfolio.dtos.serie.CreateSerieDto;
-import ay.fazy_tech.fitfolio.dtos.serie.FullSerieDto;
+import ay.fazy_tech.fitfolio.dtos.serie.SerieCreateDto;
+import ay.fazy_tech.fitfolio.dtos.serie.SerieFullDto;
 
 import java.util.List;
 
 public interface SerieService {
-    FullSerieDto createSerie(CreateSerieDto createSerieDto);
-    List<FullSerieDto> getAll();
-    FullSerieDto getById(String id);
-    void updateSerie(CreateSerieDto updatedSerie, String id);
+    SerieFullDto createSerie(SerieCreateDto serieCreateDto);
+    List<SerieFullDto> getAll();
+    SerieFullDto getById(String id);
+    void updateSerie(SerieCreateDto updatedSerie, String id);
     void deleteSerie(String id);
 }

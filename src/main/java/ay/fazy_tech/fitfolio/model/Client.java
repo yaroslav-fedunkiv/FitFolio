@@ -21,8 +21,8 @@ public class Client {
     @Column(name = "client_id")
     private Long id;
 
-    @OneToMany(mappedBy = "clientEntity")
-    private List<Workout> workouts;
+//    @OneToMany(mappedBy = "clientEntity")
+//    private List<Workout> workouts;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;

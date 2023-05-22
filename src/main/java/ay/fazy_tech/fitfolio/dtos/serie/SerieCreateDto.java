@@ -7,12 +7,10 @@ import lombok.*;
 @Setter
 @Getter
 @ToString
-public class FullSerieDto {
-    private String id;
+public class SerieCreateDto {
     private String previousReps;
     private String reps;
     private String weight;
     private String unit;
-    private String created;
-    private String updated;
+    private String exerciseId;
 }

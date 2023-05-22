@@ -61,7 +61,7 @@ public class ClientServiceImpl implements ClientService {
         List<Workout> workoutsList = clientFullDto.getWorkouts() == null ? fullDto.getWorkouts() : clientFullDto.getWorkouts();
 
         client.orElseThrow().setCoaches(coachesList);
-        client.orElseThrow().setWorkouts(workoutsList);
+//        client.orElseThrow().setWorkouts(workoutsList);
 
         Client updatedClient = clientRepository.save(client.orElseThrow());
         return mapper.map(updatedClient, ClientFullDto.class);

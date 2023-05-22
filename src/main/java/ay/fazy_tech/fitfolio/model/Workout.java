@@ -31,7 +31,7 @@ public class Workout {
     @JoinColumn(name="client_id", nullable=false)
     private Client clientEntity;
 
-//    @ManyToMany(mappedBy = "workouts")
+//    @ManyToMany(mappedBy = "workouts") fixme
 //    private List<WorkoutProgram> workoutPrograms;
     @Column
     private int duration; // time of doing workout
