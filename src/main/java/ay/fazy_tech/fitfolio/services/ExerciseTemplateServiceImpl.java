@@ -20,18 +20,18 @@ import java.util.List;
 @Log4j2
 public class ExerciseTemplateServiceImpl implements ExerciseTemplateService {
 
-    private final ModelMapper modelMapper;
+    private final ModelMapper mapper;
     private final ExerciseTemplateRepository exerciseTemplateRepository;
 
     @Override
     public void createExerciseTemplate(ExerciseTemplateCreateDto exerciseTemplateCreateDto) {
-        exerciseTemplateRepository.save(modelMapper.map(exerciseTemplateCreateDto, ExerciseTemplate.class));
+        exerciseTemplateRepository.save(mapper.map(exerciseTemplateCreateDto, ExerciseTemplate.class));
     }
 
     @Override
     public ExerciseTemplateFullDto getExerciseTemplate(String id) {
         ExerciseTemplate exerciseTemplate = exerciseTemplateRepository.findById(Long.parseLong(id)).orElseThrow();
-        return modelMapper.map(exerciseTemplate, ExerciseTemplateFullDto.class);
+        return mapper.map(exerciseTemplate, ExerciseTemplateFullDto.class);
     }
 
     @Override

@@ -24,15 +24,18 @@ public class Serie {
     @JoinColumn(name="exercise_id", nullable=false)
     private Exercise exercise;
     @Column
-    private int reps;
+    private Double result;
     @Column
-    private int previousReps;
+    private Double previousResult;
     @Column
     private double weight;
+    @Enumerated(EnumType.STRING)
     @Column
     private Unit unit;
-    @Column
+    @Column(columnDefinition = "timestamp default now()")
     private LocalDateTime created;
-    @Column
+    @Column(columnDefinition = "timestamp default now()")
     private LocalDateTime updated;
+    @Column(columnDefinition = "boolean default true")
+    private boolean isActive;
 }

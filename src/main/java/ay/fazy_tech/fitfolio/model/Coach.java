@@ -31,6 +31,6 @@ public class Coach {
                 inverseJoinColumns = @JoinColumn(name = "client_id"))
     private List<Client> clients;
 
-    @OneToMany(mappedBy = "coach")
-    private List<WorkoutProgram> workoutPrograms;
+//    @OneToMany(mappedBy = "coach")
+//    private List<WorkoutProgram> workoutPrograms;
 }

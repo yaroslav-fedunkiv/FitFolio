@@ -21,8 +21,8 @@ public class Client {
     @Column(name = "client_id")
     private Long id;
 
-//    @OneToMany(mappedBy = "clientEntity")
-//    private List<Workout> workouts;
+    @OneToMany(mappedBy = "clientEntity")
+    private List<Workout> workouts;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
@@ -30,8 +30,8 @@ public class Client {
     @ManyToMany(mappedBy = "clients")
     private List<Coach> coaches;
 
-    @OneToMany(mappedBy = "client")
-    private List<WorkoutProgram> workoutProgram;
+//    @OneToMany(mappedBy = "client")
+//    private List<WorkoutProgram> workoutProgram;
 
     @ManyToMany
     @JoinTable(name = "clients_exercise_templates",

@@ -21,13 +21,13 @@ public class WorkoutProgram {
     @Column(name = "workout_program_id")
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name="coach_id", nullable=false)
-    private Coach coach;
+//    @ManyToOne
+//    @JoinColumn(name="coach_id", nullable=false)
+//    private Coach coach;
 
     @ManyToOne
     @JoinColumn(name="client_id", nullable=false)
-    private Client client;
+    private Client clientEntity;
 
     @ManyToMany
     @JoinTable(name = "programs",

@@ -64,7 +64,7 @@ public class CoachServiceImpl implements CoachService {
         List<WorkoutProgram> workoutProgramList = coachUpdateDto.getWorkoutPrograms() == null ? fullDto.getWorkoutPrograms() : coachUpdateDto.getWorkoutPrograms();
 
         coach.orElseThrow().setClients(clientList);
-        coach.orElseThrow().setWorkoutPrograms(workoutProgramList);
+//        coach.orElseThrow().setWorkoutPrograms(workoutProgramList);
 
         Coach updatedCoach = coachRepository.save(coach.orElseThrow());
         return mapper.map(updatedCoach, CoachUpdateDto.class);

@@ -8,6 +8,6 @@ import lombok.*;
 @NoArgsConstructor
 @ToString
 public class ExerciseCreateDto {
-    private String exerciseTemplateId;
-    private String workoutId;
+    private Long exerciseTemplateId;
+    private Long workoutId;
 }

@@ -27,9 +27,9 @@ public class WorkoutServiceImpl implements WorkoutService{
     public void createWorkout(WorkoutCreateDto workoutCreateDto) {
         Workout workout = new Workout();
         workout.setWorkoutTemplate(workoutTemplateRepository
-                .findById(Long.parseLong(workoutCreateDto.getWorkoutTemplateId())).orElseThrow());
+                .findById(workoutCreateDto.getWorkoutTemplateId()).orElseThrow());
         workout.setClientEntity(clientRepository
-                .findById(Long.parseLong(workoutCreateDto.getClientId())).orElseThrow());
+                .findById(workoutCreateDto.getClientId()).orElseThrow());
         workout.setDuration(Integer.parseInt(workoutCreateDto.getDuration()));
         workoutRepository.save(workout);
 //        workoutRepository.save(mapper.map(createWorkoutDto, Workout.class));

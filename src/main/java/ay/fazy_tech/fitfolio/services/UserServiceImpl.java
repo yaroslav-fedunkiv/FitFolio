@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
     public Optional<UserFullDto> createUser(UserCreateDto userCreateDto) {
         log.info("Start method createUser with the email {}", userCreateDto.getEmail());
         User user = mapper.map(userCreateDto, User.class);
-        log.error("User object ==> "+user);
+        log.debug("User object ==> "+user);
 
         userRepository.save(user);
         log.info("User with the email {} is created successfully", userCreateDto.getEmail());

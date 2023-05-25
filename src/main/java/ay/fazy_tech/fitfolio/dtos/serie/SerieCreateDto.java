@@ -8,9 +8,9 @@ import lombok.*;
 @Getter
 @ToString
 public class SerieCreateDto {
-    private String previousReps;
-    private String reps;
+    private String previousResult;
+    private String result;
     private String weight;
     private String unit;
-    private String exerciseId;
+    private Long exerciseId;
 }

@@ -1,8 +1,10 @@
 package ay.fazy_tech.fitfolio;
 
 import ay.fazy_tech.fitfolio.dtos.client.ClientCreateDto;
+import ay.fazy_tech.fitfolio.dtos.exercise.ExerciseCreateDto;
 import ay.fazy_tech.fitfolio.dtos.exercise_template.ExerciseTemplateCreateDto;
 import ay.fazy_tech.fitfolio.dtos.exercise_template.ExerciseTemplateFullDto;
+import ay.fazy_tech.fitfolio.dtos.serie.SerieCreateDto;
 import ay.fazy_tech.fitfolio.dtos.user.UserCreateDto;
 import ay.fazy_tech.fitfolio.dtos.user.UserFullDto;
 import ay.fazy_tech.fitfolio.dtos.workout.WorkoutCreateDto;
@@ -67,14 +69,16 @@ public class FitFolioApplication {
             workoutTemplateCreateDto.setDescription("Best Workout ever!!!");
             workoutTemplateService.createWorkoutTemplate(workoutTemplateCreateDto);
 
-            WorkoutCreateDto workoutDto = new WorkoutCreateDto("1", "1", "564");
+            WorkoutCreateDto workoutDto = new WorkoutCreateDto(1L, 1L, "564");
             workoutService.createWorkout(workoutDto);
-//
-//            CreateExerciseDto exerciseDto = new CreateExerciseDto("1", "1");
-//            exerciseService.createExercise(exerciseDto);
-//
-//            CreateSerieDto serieDto = new CreateSerieDto("0", "20", "0", "REPS", "1");
-//            serieService.createSerie(serieDto);
+
+            ExerciseCreateDto exerciseDto = new ExerciseCreateDto(1L, 1L);
+            exerciseService.createExercise(exerciseDto);
+
+            SerieCreateDto serieDto = new SerieCreateDto("0", "20", "0", "REPS", 1L);
+            serieService.createSerie(serieDto);
+
+
         };
     }
 

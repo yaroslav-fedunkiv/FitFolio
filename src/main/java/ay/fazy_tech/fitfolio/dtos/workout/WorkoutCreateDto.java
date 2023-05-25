@@ -8,7 +8,7 @@ import lombok.*;
 @Getter
 @ToString
 public class WorkoutCreateDto {
-   private String workoutTemplateId;
-   private String clientId;
+   private Long workoutTemplateId;
+   private Long clientId;
    private String duration;
 }
