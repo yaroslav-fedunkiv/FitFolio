@@ -8,5 +8,6 @@ import lombok.*;
 @Getter
 @ToString
 public class WorkoutProgramCreateDto {
-   private Long clientEntity;
+   private String title;
+//   private Long clientEntityId;
 }

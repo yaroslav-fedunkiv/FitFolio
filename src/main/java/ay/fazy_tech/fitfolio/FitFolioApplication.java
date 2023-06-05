@@ -8,6 +8,7 @@ import ay.fazy_tech.fitfolio.dtos.serie.SerieCreateDto;
 import ay.fazy_tech.fitfolio.dtos.user.UserCreateDto;
 import ay.fazy_tech.fitfolio.dtos.user.UserFullDto;
 import ay.fazy_tech.fitfolio.dtos.workout.WorkoutCreateDto;
+import ay.fazy_tech.fitfolio.dtos.workout_program.WorkoutProgramCreateDto;
 import ay.fazy_tech.fitfolio.dtos.workout_template.WorkoutTemplateCreateDto;
 import ay.fazy_tech.fitfolio.services.*;
 import lombok.extern.log4j.Log4j2;
@@ -27,7 +28,8 @@ public class FitFolioApplication {
     @Bean()
     CommandLineRunner init(ClientService clientService, UserService userService,
                            ExerciseTemplateService exerciseTemplateService, WorkoutTemplateService workoutTemplateService,
-                           WorkoutService workoutService, ExerciseService exerciseService, SerieService serieService) {
+                           WorkoutService workoutService, ExerciseService exerciseService, SerieService serieService,
+                           WorkoutProgramService workoutProgramService) {
         return args -> {
             UserCreateDto userCreateDto = new UserCreateDto();
             userCreateDto.setFullName("Ann Zelener");
@@ -77,6 +79,10 @@ public class FitFolioApplication {
 
             SerieCreateDto serieDto = new SerieCreateDto("0", "20", "0", "REPS", 1L);
             serieService.createSerie(serieDto);
+
+            WorkoutProgramCreateDto workoutProgramCreateDto = new WorkoutProgramCreateDto("New Workout Program");
+            workoutProgramService.createWorkoutProgram(workoutProgramCreateDto);
+            workoutProgramService.createProgram(1L, 1L);
 
 
         };

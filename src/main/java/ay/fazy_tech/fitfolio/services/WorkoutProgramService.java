@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface WorkoutProgramService {
     void createWorkoutProgram(WorkoutProgramCreateDto workoutProgramCreateDto);
+    void createProgram(Long workoutProgramId, Long workoutTemplateId);
     List<WorkoutProgramFullDto> getAll();
     WorkoutFullDto getById(String id);
     void updateWorkoutProgram(WorkoutProgramCreateDto updatedSerie, String id);

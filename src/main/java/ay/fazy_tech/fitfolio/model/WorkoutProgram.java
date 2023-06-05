@@ -21,17 +21,20 @@ public class WorkoutProgram {
     @Column(name = "workout_program_id")
     private Long id;
 
+    @Column
+    private String title;
+
 //    @ManyToOne
 //    @JoinColumn(name="coach_id", nullable=false)
 //    private Coach coach;
 
-    @ManyToOne
-    @JoinColumn(name="client_id", nullable=false)
-    private Client clientEntity;
+//    @ManyToOne
+//    @JoinColumn(name="client_id", nullable=false)
+//    private Client clientEntity;
 
     @ManyToMany
-    @JoinTable(name = "programs",
+    @JoinTable(name = "program",
             joinColumns = @JoinColumn(name = "workout_program_id"),
-            inverseJoinColumns = @JoinColumn(name = "workout_template_id"))
+            inverseJoinColumns = @JoinColumn(name = "workout_template_id")) //fixme fucking shit
     private List<WorkoutTemplate> workouts;
 }

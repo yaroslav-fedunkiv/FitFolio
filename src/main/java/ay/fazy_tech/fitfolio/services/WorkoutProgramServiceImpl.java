@@ -3,6 +3,9 @@ package ay.fazy_tech.fitfolio.services;
 import ay.fazy_tech.fitfolio.dtos.workout.WorkoutFullDto;
 import ay.fazy_tech.fitfolio.dtos.workout_program.WorkoutProgramCreateDto;
 import ay.fazy_tech.fitfolio.dtos.workout_program.WorkoutProgramFullDto;
+import ay.fazy_tech.fitfolio.model.Program;
+import ay.fazy_tech.fitfolio.model.WorkoutProgram;
+import ay.fazy_tech.fitfolio.repositories.ProgramRepository;
 import ay.fazy_tech.fitfolio.repositories.WorkoutProgramRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -16,10 +19,19 @@ import java.util.List;
 @Log4j2
 public class WorkoutProgramServiceImpl implements WorkoutProgramService{
     private final WorkoutProgramRepository workoutProgramRepository;
+    private final ProgramRepository programRepository;
     private final ModelMapper mapper;
     @Override
     public void createWorkoutProgram(WorkoutProgramCreateDto workoutProgramCreateDto) {
+        workoutProgramRepository.save(mapper.map(workoutProgramCreateDto, WorkoutProgram.class));
+    }
 
+    @Override
+    public void createProgram(Long workoutProgramId, Long workoutTemplateId) {
+        Program program = new Program();
+        program.setWorkoutProgramId(workoutProgramId);
+        program.setWorkoutTemplateId(workoutTemplateId);
+        programRepository.save(program);
     }
 
     @Override

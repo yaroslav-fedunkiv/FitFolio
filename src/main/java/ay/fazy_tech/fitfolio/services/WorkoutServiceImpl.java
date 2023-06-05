@@ -32,7 +32,6 @@ public class WorkoutServiceImpl implements WorkoutService{
                 .findById(workoutCreateDto.getClientId()).orElseThrow());
         workout.setDuration(Integer.parseInt(workoutCreateDto.getDuration()));
         workoutRepository.save(workout);
-//        workoutRepository.save(mapper.map(createWorkoutDto, Workout.class));
     }
 
     @Override
