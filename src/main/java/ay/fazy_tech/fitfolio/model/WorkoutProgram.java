@@ -28,13 +28,15 @@ public class WorkoutProgram {
 //    @JoinColumn(name="coach_id", nullable=false)
 //    private Coach coach;
 
-//    @ManyToOne
-//    @JoinColumn(name="client_id", nullable=false)
-//    private Client clientEntity;
+    @ManyToMany
+    @JoinTable(name = "client_program",
+            joinColumns = @JoinColumn(name = "workout_program_id"),
+            inverseJoinColumns = @JoinColumn(name = "client_id"))
+    private List<Client> clientEntity;
 
     @ManyToMany
     @JoinTable(name = "program",
             joinColumns = @JoinColumn(name = "workout_program_id"),
-            inverseJoinColumns = @JoinColumn(name = "workout_template_id")) //fixme fucking shit
+            inverseJoinColumns = @JoinColumn(name = "workout_template_id"))
     private List<WorkoutTemplate> workouts;
 }

@@ -25,11 +25,11 @@ public class Coach {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToMany
-    @JoinTable(name = "clients_couches",
-                joinColumns = @JoinColumn(name = "coach_id"),
-                inverseJoinColumns = @JoinColumn(name = "client_id"))
-    private List<Client> clients;
+//    @ManyToMany
+//    @JoinTable(name = "clients_couches",
+//                joinColumns = @JoinColumn(name = "coach_id"),
+//                inverseJoinColumns = @JoinColumn(name = "client_id"))
+//    private List<Client> clients;
 
 //    @OneToMany(mappedBy = "coach")
 //    private List<WorkoutProgram> workoutPrograms;

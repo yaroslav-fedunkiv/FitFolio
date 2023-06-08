@@ -63,7 +63,7 @@ public class CoachServiceImpl implements CoachService {
         List<Client> clientList = coachUpdateDto.getClients() == null ? fullDto.getClients() : coachUpdateDto.getClients();
         List<WorkoutProgram> workoutProgramList = coachUpdateDto.getWorkoutPrograms() == null ? fullDto.getWorkoutPrograms() : coachUpdateDto.getWorkoutPrograms();
 
-        coach.orElseThrow().setClients(clientList);
+//        coach.orElseThrow().setClients(clientList);
 //        coach.orElseThrow().setWorkoutPrograms(workoutProgramList);
 
         Coach updatedCoach = coachRepository.save(coach.orElseThrow());

@@ -83,7 +83,7 @@ public class FitFolioApplication {
             WorkoutProgramCreateDto workoutProgramCreateDto = new WorkoutProgramCreateDto("New Workout Program");
             workoutProgramService.createWorkoutProgram(workoutProgramCreateDto);
             workoutProgramService.createProgram(1L, 1L);
-
+            workoutProgramService.addProgramToClient(1L, 1L);
 
         };
     }
