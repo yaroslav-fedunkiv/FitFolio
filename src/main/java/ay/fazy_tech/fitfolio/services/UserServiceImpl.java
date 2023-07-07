@@ -4,7 +4,10 @@ import ay.fazy_tech.fitfolio.dtos.user.UserCreateDto;
 import ay.fazy_tech.fitfolio.dtos.user.UserFullDto;
 import ay.fazy_tech.fitfolio.dtos.user.UserUpdateDto;
 import ay.fazy_tech.fitfolio.exceptions.UserNotFoundSuchElementException;
+import ay.fazy_tech.fitfolio.model.Subscriber;
 import ay.fazy_tech.fitfolio.model.User;
+import ay.fazy_tech.fitfolio.repositories.FollowerRepository;
+import ay.fazy_tech.fitfolio.repositories.SubscriberRepository;
 import ay.fazy_tech.fitfolio.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -21,8 +24,18 @@ import java.util.stream.Collectors;
 @Log4j2
 public class UserServiceImpl implements UserService {
     private final ModelMapper mapper;
-
     private final UserRepository userRepository;
+    private final SubscriberRepository subscriberRepository;
+    private final FollowerRepository followerRepository;
+
+    @Override
+    public boolean subscribe(Long currentUserId, Long userIdWhomToFollow) {
+        Subscriber subscriber = new Subscriber();
+
+//        subscriber.setUser();
+        subscriberRepository.save(subscriber);
+        return false;
+    }
 
     @Override
     @Transactional

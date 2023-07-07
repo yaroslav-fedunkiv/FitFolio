@@ -18,4 +18,5 @@ public interface UserService {
     UserUpdateDto updateUser(UserUpdateDto userUpdateDto, String email);
     List<UserFullDto> getAllUsers();
     boolean isStatusActive(String email);
+    boolean subscribe(Long currentUserId, Long userIdWhomToFollow);
 }

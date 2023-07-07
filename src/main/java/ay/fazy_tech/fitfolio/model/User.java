@@ -6,6 +6,7 @@ import org.hibernate.annotations.DynamicInsert;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -45,6 +46,10 @@ public class User {
 
     @OneToOne(mappedBy = "user")
     private Coach coach;
+    @OneToMany(mappedBy = "user")
+    private List<Subscriber> subscriberList;
+    @OneToMany(mappedBy = "user")
+    private List<Follower> followerList;
     @Column
     private String password;
     @Column(columnDefinition = "timestamp default now()")
