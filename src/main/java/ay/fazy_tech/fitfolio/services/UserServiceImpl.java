@@ -4,14 +4,12 @@ import ay.fazy_tech.fitfolio.dtos.user.UserCreateDto;
 import ay.fazy_tech.fitfolio.dtos.user.UserFullDto;
 import ay.fazy_tech.fitfolio.dtos.user.UserUpdateDto;
 import ay.fazy_tech.fitfolio.exceptions.UserNotFoundSuchElementException;
-import ay.fazy_tech.fitfolio.model.Subscriber;
 import ay.fazy_tech.fitfolio.model.User;
-import ay.fazy_tech.fitfolio.repositories.FollowerRepository;
-import ay.fazy_tech.fitfolio.repositories.SubscriberRepository;
 import ay.fazy_tech.fitfolio.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -25,16 +23,18 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
     private final ModelMapper mapper;
     private final UserRepository userRepository;
-    private final SubscriberRepository subscriberRepository;
-    private final FollowerRepository followerRepository;
 
     @Override
-    public boolean subscribe(Long currentUserId, Long userIdWhomToFollow) {
-        Subscriber subscriber = new Subscriber();
+    public boolean subscribe(Long followerId, Long userId) {
+        User follower = userRepository.findById(followerId).orElseThrow();
+        User user = userRepository.findById(userId).orElseThrow();
 
-//        subscriber.setUser();
-        subscriberRepository.save(subscriber);
-        return false;
+        follower.getFollowing().add(user);
+        user.getFollowers().add(follower);
+
+        userRepository.save(follower);
+        userRepository.save(user);
+        return true;
     }
 
     @Override

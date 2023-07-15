@@ -43,6 +43,21 @@ public class FitFolioApplication {
             userCreateDto.setPasswordConfirmed("Password12345");
             userService.createUser(userCreateDto);
 
+            UserCreateDto userCreateDto2 = new UserCreateDto();
+            userCreateDto2.setFullName("Yaroslav Fedunkiv");
+            userCreateDto2.setUserName("yarek");
+            userCreateDto2.setUserRole("CLIENT_ROLE");
+            userCreateDto2.setEmail("yarek@gmail.com");
+            userCreateDto2.setSex("MALE");
+            userCreateDto2.setDob("2000-01-01");
+            userCreateDto2.setHeight("185");
+            userCreateDto2.setPassword("Password12345");
+            userCreateDto2.setPasswordConfirmed("Password12345");
+            userService.createUser(userCreateDto2);
+
+            userService.subscribe(1L, 2L);
+            log.info("finish subscribe process");
+
             UserFullDto user = userService.getUserByEmail(userCreateDto.getEmail()).orElseThrow();
 
             log.info(user);
@@ -84,6 +99,8 @@ public class FitFolioApplication {
             workoutProgramService.createWorkoutProgram(workoutProgramCreateDto);
             workoutProgramService.createProgram(1L, 1L);
             workoutProgramService.addProgramToClient(1L, 1L);
+
+
 
         };
     }

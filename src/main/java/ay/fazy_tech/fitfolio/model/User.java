@@ -6,7 +6,8 @@ import org.hibernate.annotations.DynamicInsert;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -46,10 +47,21 @@ public class User {
 
     @OneToOne(mappedBy = "user")
     private Coach coach;
-    @OneToMany(mappedBy = "user")
-    private List<Subscriber> subscriberList;
-    @OneToMany(mappedBy = "user")
-    private List<Follower> followerList;
+
+    // Many-to-many relationship to represent users being followed
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_followers",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "follower_id")
+    )
+    private Set<User> followers = new HashSet<>();
+
+    // Many-to-many relationship to represent users following others
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "followers")
+    private Set<User> following = new HashSet<>();
+
+
     @Column
     private String password;
     @Column(columnDefinition = "timestamp default now()")
