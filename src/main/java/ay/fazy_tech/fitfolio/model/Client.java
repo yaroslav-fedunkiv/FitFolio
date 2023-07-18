@@ -27,9 +27,6 @@ public class Client {
     @JoinColumn(name = "user_id")
     private User user;
 
-//    @ManyToMany(mappedBy = "clients")
-//    private List<Coach> coaches;
-
     @ManyToMany(mappedBy = "clientEntity")
     private List<WorkoutProgram> workoutProgram;
 

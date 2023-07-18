@@ -24,10 +24,6 @@ public class WorkoutProgram {
     @Column
     private String title;
 
-//    @ManyToOne
-//    @JoinColumn(name="coach_id", nullable=false)
-//    private Coach coach;
-
     @ManyToMany
     @JoinTable(name = "client_program",
             joinColumns = @JoinColumn(name = "workout_program_id"),

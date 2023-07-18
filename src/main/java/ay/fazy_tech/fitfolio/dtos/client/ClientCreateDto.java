@@ -1,11 +1,8 @@
 package ay.fazy_tech.fitfolio.dtos.client;
 
-import ay.fazy_tech.fitfolio.model.Coach;
-import ay.fazy_tech.fitfolio.model.Workout;
 import lombok.*;
 
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 /**
  * @author Anna Zelener

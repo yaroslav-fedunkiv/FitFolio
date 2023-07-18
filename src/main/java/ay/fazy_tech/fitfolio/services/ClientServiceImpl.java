@@ -3,7 +3,6 @@ package ay.fazy_tech.fitfolio.services;
 import ay.fazy_tech.fitfolio.dtos.client.ClientCreateDto;
 import ay.fazy_tech.fitfolio.dtos.client.ClientFullDto;
 import ay.fazy_tech.fitfolio.model.Client;
-import ay.fazy_tech.fitfolio.model.Coach;
 import ay.fazy_tech.fitfolio.model.Workout;
 import ay.fazy_tech.fitfolio.repositories.ClientRepository;
 import org.modelmapper.ModelMapper;
@@ -57,7 +56,6 @@ public class ClientServiceImpl implements ClientService {
         log.info("Start method updateClient by id : {}", id);
         Optional<Client> client = clientRepository.findById(Long.valueOf((fullDto.getId())));
 
-        List<Coach> coachesList = clientFullDto.getCoaches() == null ? fullDto.getCoaches() : clientFullDto.getCoaches();
         List<Workout> workoutsList = clientFullDto.getWorkouts() == null ? fullDto.getWorkouts() : clientFullDto.getWorkouts();
 
 //        client.orElseThrow().setCoaches(coachesList);

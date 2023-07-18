@@ -45,9 +45,6 @@ public class User {
     @OneToOne(mappedBy = "user")
     private Client currentClient;
 
-    @OneToOne(mappedBy = "user")
-    private Coach coach;
-
     // Many-to-many relationship to represent users being followed
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
