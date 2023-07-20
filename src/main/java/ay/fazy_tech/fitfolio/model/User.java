@@ -1,9 +1,11 @@
 package ay.fazy_tech.fitfolio.model;
 
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -27,7 +29,7 @@ public class User {
     private String fullName;
     @Column
     private LocalDate dob; //date of birth
-   @Column
+    @Column
     private double weight;
     @Column
     private int height;
@@ -39,7 +41,6 @@ public class User {
     private Role userRole;
     @Column
     private String email;
-
     @Column
     private String userName;
 
@@ -59,7 +60,6 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "followers")
     private Set<User> following = new HashSet<>();
 
-
     @Column
     private String password;
     @Column(columnDefinition = "timestamp default now()")
@@ -67,6 +67,6 @@ public class User {
     @Column(columnDefinition = "timestamp default now()")
     private LocalDateTime updated;
     @Column(columnDefinition = "boolean default true")
-    private boolean isActive;
+    private Boolean isActive;
 
 }

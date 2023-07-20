@@ -51,7 +51,7 @@ public class FitFolioApplication {
             userCreateDto2.setEmail("yarek@gmail.com");
             userCreateDto2.setSex("MALE");
             userCreateDto2.setDob("2000-01-01");
-            userCreateDto.setWeight(Double.parseDouble("65"));
+            userCreateDto2.setWeight(Double.parseDouble("65"));
             userCreateDto2.setHeight(Integer.parseInt("185"));
             userCreateDto2.setPassword("Password12345");
             userCreateDto2.setPasswordConfirmed("Password12345");

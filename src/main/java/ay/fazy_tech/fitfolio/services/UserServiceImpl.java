@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
     public Optional<UserFullDto> createUser(UserCreateDto userCreateDto) {
         log.info("Start method createUser with the email {}", userCreateDto.getEmail());
         User user = mapper.map(userCreateDto, User.class);
-        log.debug("User object ==> "+user);
+        log.debug("User object ==> " + user);
 
         userRepository.save(user);
         log.info("User with the email {} is created successfully", userCreateDto.getEmail());
@@ -55,7 +55,7 @@ public class UserServiceImpl implements UserService {
         log.info("Start method  deactivateUser with the email {}", email);
         UserFullDto userDto = getUserByEmail(email).orElseThrow();
         Optional<User> user = userRepository.findById(Long.valueOf((userDto.getId())));
-        user.orElseThrow().setActive(false);
+        user.orElseThrow().setIsActive(false);
         User deactivatedUser = userRepository.save(user.orElseThrow());
         log.info("User {} is deactivated", email);
         return mapper.map(deactivatedUser, UserFullDto.class);
@@ -82,11 +82,11 @@ public class UserServiceImpl implements UserService {
 
         String newFullName = userUpdateDto.getFullName() == null ? fullDto.getFullName() : userUpdateDto.getFullName();
         String newEmail = userUpdateDto.getNewEmail() == null ? email : userUpdateDto.getNewEmail();
-       // String newWeight = userUpdateDto.getWeight() == null ? fullDto.getWeight() : userUpdateDto.getWeight();
+        // String newWeight = userUpdateDto.getWeight() == null ? fullDto.getWeight() : userUpdateDto.getWeight();
 
         user.orElseThrow().setEmail(newEmail);
         user.orElseThrow().setFullName(newFullName);
-       // user.orElseThrow().setWeight(Double.parseDouble(newWeight));
+        // user.orElseThrow().setWeight(Double.parseDouble(newWeight));
 
         User updatedUser = userRepository.save(user.orElseThrow());
         return mapper.map(updatedUser, UserUpdateDto.class);
