@@ -4,6 +4,7 @@ import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -26,7 +27,7 @@ public class User {
     private String fullName;
     @Column
     private LocalDate dob; //date of birth
-    @Column
+   @Column
     private double weight;
     @Column
     private int height;

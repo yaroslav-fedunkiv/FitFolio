@@ -38,11 +38,12 @@ public class FitFolioApplication {
             userCreateDto.setEmail("zelener@gmail.com");
             userCreateDto.setSex("FEMALE");
             userCreateDto.setDob("2000-01-01");
-            userCreateDto.setHeight("170");
+            userCreateDto.setWeight(Double.parseDouble("55"));
+            userCreateDto.setHeight(Integer.parseInt("170"));
             userCreateDto.setPassword("Password12345");
             userCreateDto.setPasswordConfirmed("Password12345");
             userService.createUser(userCreateDto);
-
+            log.info(userCreateDto);
             UserCreateDto userCreateDto2 = new UserCreateDto();
             userCreateDto2.setFullName("Yaroslav Fedunkiv");
             userCreateDto2.setUserName("yarek");
@@ -50,7 +51,8 @@ public class FitFolioApplication {
             userCreateDto2.setEmail("yarek@gmail.com");
             userCreateDto2.setSex("MALE");
             userCreateDto2.setDob("2000-01-01");
-            userCreateDto2.setHeight("185");
+            userCreateDto.setWeight(Double.parseDouble("65"));
+            userCreateDto2.setHeight(Integer.parseInt("185"));
             userCreateDto2.setPassword("Password12345");
             userCreateDto2.setPasswordConfirmed("Password12345");
             userService.createUser(userCreateDto2);
@@ -60,10 +62,14 @@ public class FitFolioApplication {
 
             UserFullDto user = userService.getUserByEmail(userCreateDto.getEmail()).orElseThrow();
 
+            UserFullDto user2 = userService.getUserByEmail(userCreateDto2.getEmail()).orElseThrow();
+
             log.info(user);
+            log.info(user2);
             ClientCreateDto clientCreateDto = new ClientCreateDto();
             log.info("userID ===>> " + user.getId());
-            clientCreateDto.setUserId(user.getId());
+            log.info("user2ID ===>> " + user2.getId());
+            clientCreateDto.setUserId(Long.valueOf(user.getId()));
             clientService.createClient(clientCreateDto);
 
 
@@ -82,9 +88,9 @@ public class FitFolioApplication {
 
             WorkoutTemplateCreateDto workoutTemplateCreateDto = new WorkoutTemplateCreateDto();
 
-            workoutTemplateCreateDto.setTitle("First Workout");
             workoutTemplateCreateDto.setDescription("Best Workout ever!!!");
             workoutTemplateService.createWorkoutTemplate(workoutTemplateCreateDto);
+            workoutTemplateCreateDto.setTitle("First Workout");
 
             WorkoutCreateDto workoutDto = new WorkoutCreateDto(1L, 1L, "564");
             workoutService.createWorkout(workoutDto);
@@ -99,7 +105,6 @@ public class FitFolioApplication {
             workoutProgramService.createWorkoutProgram(workoutProgramCreateDto);
             workoutProgramService.createProgram(1L, 1L);
             workoutProgramService.addProgramToClient(1L, 1L);
-
 
 
         };

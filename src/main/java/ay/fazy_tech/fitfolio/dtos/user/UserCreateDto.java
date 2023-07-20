@@ -1,10 +1,10 @@
 package ay.fazy_tech.fitfolio.dtos.user;
 
-import ay.fazy_tech.fitfolio.model.Sex;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.*;
+import java.math.BigDecimal;
 
 @Getter
 @Setter
@@ -27,12 +27,12 @@ public class UserCreateDto {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private String dob;
     @NotNull
-    private String height;
+    private int height;
     @NotNull
-    private String weight;
+    private double weight;
     @NotNull
-  //  @Size(min = 6, max = 20)
-  //  @Pattern(regexp = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})")
+    //  @Size(min = 6, max = 20)
+    //  @Pattern(regexp = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})")
     private String password;
     private String passwordConfirmed;
 }

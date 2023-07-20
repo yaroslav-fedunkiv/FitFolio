@@ -3,8 +3,10 @@ package ay.fazy_tech.fitfolio.services;
 import ay.fazy_tech.fitfolio.dtos.client.ClientCreateDto;
 import ay.fazy_tech.fitfolio.dtos.client.ClientFullDto;
 import ay.fazy_tech.fitfolio.model.Client;
+import ay.fazy_tech.fitfolio.model.User;
 import ay.fazy_tech.fitfolio.model.Workout;
 import ay.fazy_tech.fitfolio.repositories.ClientRepository;
+import ay.fazy_tech.fitfolio.repositories.UserRepository;
 import org.modelmapper.ModelMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -25,17 +27,21 @@ import java.util.stream.Collectors;
 public class ClientServiceImpl implements ClientService {
 
     private final ModelMapper mapper;
-
+    private final UserRepository userRepository;
     private final ClientRepository clientRepository;
 
     @Override
     @Transactional
     public Optional<ClientFullDto> createClient(ClientCreateDto clientCreateDto) {
         log.info("Start method createClient with user id {}", clientCreateDto.getUserId());
-        clientRepository.save(mapper.map(clientCreateDto, Client.class));
+        User user = userRepository.findById(clientCreateDto.getUserId()).orElseThrow(() -> new IllegalArgumentException("User not found"));
+        Client client = new Client();
+        client.setUser(user);
+        clientRepository.save(client);
         log.info("Client with the user ID {} is created successfully", clientCreateDto.getUserId());
-        return getClientById(clientCreateDto.getUserId());
+        return getClientById(String.valueOf(client.getId()));
     }
+
 
     @Override
     @Transactional

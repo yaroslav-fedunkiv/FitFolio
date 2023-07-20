@@ -13,10 +13,10 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @ToString
 public class ClientCreateDto {
-//    @NotNull
+    //    @NotNull
 //    private List<Workout> workouts;
     @NotNull
-    private String userId;
+    private Long userId;
 //    @NotNull
 //    private List<Coach> coaches;
     //    private List<WorkoutProgram> workoutProgram; //todo

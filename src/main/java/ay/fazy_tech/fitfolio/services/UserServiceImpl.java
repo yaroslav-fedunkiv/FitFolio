@@ -82,11 +82,11 @@ public class UserServiceImpl implements UserService {
 
         String newFullName = userUpdateDto.getFullName() == null ? fullDto.getFullName() : userUpdateDto.getFullName();
         String newEmail = userUpdateDto.getNewEmail() == null ? email : userUpdateDto.getNewEmail();
-        String newWeight = userUpdateDto.getWeight() == null ? fullDto.getWeight() : userUpdateDto.getWeight();
+       // String newWeight = userUpdateDto.getWeight() == null ? fullDto.getWeight() : userUpdateDto.getWeight();
 
         user.orElseThrow().setEmail(newEmail);
         user.orElseThrow().setFullName(newFullName);
-        user.orElseThrow().setWeight(Double.parseDouble(newWeight));
+       // user.orElseThrow().setWeight(Double.parseDouble(newWeight));
 
         User updatedUser = userRepository.save(user.orElseThrow());
         return mapper.map(updatedUser, UserUpdateDto.class);
