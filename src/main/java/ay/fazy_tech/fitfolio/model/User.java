@@ -21,10 +21,6 @@ import java.util.Set;
 @Table(name = "user_table")
 @DynamicInsert
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
-    private Long id;
     @Column
     private String fullName;
     @Column
@@ -36,18 +32,6 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column
     private Sex sex;
-    @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "varchar(20) default 'CLIENT_ROLE'")
-    private Role userRole;
-    @Column
-    private String email;
-    @Column
-    private String userName;
-
-    @OneToOne(mappedBy = "user")
-    private Client currentClient;
-
-    // Many-to-many relationship to represent users being followed
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_followers",
@@ -56,10 +40,24 @@ public class User {
     )
     private Set<User> followers = new HashSet<>();
 
-    // Many-to-many relationship to represent users following others
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "followers")
     private Set<User> following = new HashSet<>();
 
+
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
+    private Long id;
+    @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "varchar(20) default 'CLIENT_ROLE'")
+    private Role userRole;
+    @Column
+    private String email;
+    @Column
+    private String userName;
+    @OneToOne(mappedBy = "user")
+    private Client currentClient;
     @Column
     private String password;
     @Column(columnDefinition = "timestamp default now()")

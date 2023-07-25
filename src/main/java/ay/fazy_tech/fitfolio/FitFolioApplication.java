@@ -17,6 +17,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.Optional;
+
 @SpringBootApplication
 @Log4j2
 public class FitFolioApplication {
@@ -82,7 +84,7 @@ public class FitFolioApplication {
             exerciseTemplate.setCategory("REPS_ONLY");
             exerciseTemplateService.createExerciseTemplate(exerciseTemplate);
 
-            ExerciseTemplateFullDto exerciseTemplateFullDto = exerciseTemplateService.getExerciseTemplate("1");
+            Optional<ExerciseTemplateFullDto> exerciseTemplateFullDto = exerciseTemplateService.getExerciseTemplate("1");
 
             log.info(exerciseTemplateFullDto);
 

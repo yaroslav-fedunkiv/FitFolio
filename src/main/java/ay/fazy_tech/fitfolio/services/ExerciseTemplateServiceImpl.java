@@ -2,6 +2,7 @@ package ay.fazy_tech.fitfolio.services;
 
 import ay.fazy_tech.fitfolio.dtos.exercise_template.ExerciseTemplateCreateDto;
 import ay.fazy_tech.fitfolio.dtos.exercise_template.ExerciseTemplateFullDto;
+import ay.fazy_tech.fitfolio.dtos.user.UserFullDto;
 import ay.fazy_tech.fitfolio.model.ExerciseTemplate;
 import ay.fazy_tech.fitfolio.repositories.ExerciseTemplateRepository;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +11,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 /**
  * @author Anna Zelener
@@ -29,9 +32,14 @@ public class ExerciseTemplateServiceImpl implements ExerciseTemplateService {
     }
 
     @Override
-    public ExerciseTemplateFullDto getExerciseTemplate(String id) {
-        ExerciseTemplate exerciseTemplate = exerciseTemplateRepository.findById(Long.parseLong(id)).orElseThrow();
-        return mapper.map(exerciseTemplate, ExerciseTemplateFullDto.class);
+    public Optional<ExerciseTemplateFullDto> getExerciseTemplate(String id) {
+        log.info("Start method getExerciseTemplate with the id: {}", id);
+        try {
+            return Optional.of(mapper.map(exerciseTemplateRepository.findById(Long.valueOf(id)), ExerciseTemplateFullDto.class));
+        } catch (IllegalArgumentException ex) {
+            log.info("Exercise Template with the id {} wasn't found! ", id);
+            throw new NoSuchElementException();
+        }
     }
 
     @Override
