@@ -43,25 +43,25 @@ public class UserController {
         return new ResponseEntity<>(": User with an email --> " + userCreateDto.getEmail() + " -- was created!", HttpStatus.OK);
     }
 
-    @Operation(summary = "Get user by its email")
+    @Operation(summary = "Get user by its id")
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "The user is found", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = UserFullDto.class))}),
-            @ApiResponse(responseCode = "400", description = "An invalid email is provided", content = @Content),
+            @ApiResponse(responseCode = "400", description = "An invalid id is provided", content = @Content),
             @ApiResponse(responseCode = "404", description = "User is not found", content = @Content)})
-    @GetMapping("/get/{email}")
-    public ResponseEntity<Object> getUserByEmail(@Parameter(description = "User's email to be searched") @PathVariable String email) {
-        log.info("Request to getUserByEmail --> {}", email);
+    @GetMapping("/get/{id}")
+    public ResponseEntity<Object> getUserById(@Parameter(description = "User's id to be searched") @PathVariable String id) {
+        log.info("Request to getUserById --> {}", id);
         try {
-            if (userService.getUserByEmail(email).isEmpty()) {
-                log.warn("No user is found with a given email : {} !", email);
-                return new ResponseEntity<>(email + " --> An invalid email provided!", HttpStatus.BAD_REQUEST);
+            if (userService.getUserById(id).isEmpty()) {
+                log.warn("No user is found with a given id : {} !", id);
+                return new ResponseEntity<>(id + " --> An invalid id provided!", HttpStatus.BAD_REQUEST);
             } else {
-                Optional<UserFullDto> user = userService.getUserByEmail(email);
-                log.info("Request to get User by email :{}", email);
+                Optional<UserFullDto> user = userService.getUserById(id);
+                log.info("Request to get User by id :{}", id);
                 return new ResponseEntity<>(user, HttpStatus.OK);
             }
         } catch (NoSuchUserFoundException e) {
-            log.error("User with such an email {} doesn't exist", email);
-            return new ResponseEntity<>(email + " -- User with such an email {} doesn't exist!", HttpStatus.NOT_FOUND);
+            log.error("User with such an id {} doesn't exist", id);
+            return new ResponseEntity<>(id + " -- User with such an id {} doesn't exist!", HttpStatus.NOT_FOUND);
         }
     }
 
@@ -81,42 +81,42 @@ public class UserController {
         }
     }
 
-    @Operation(summary = "Update user by its email")
+    @Operation(summary = "Update user by its id")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "User is updated successfully"),
-            @ApiResponse(responseCode = "400", description = "Invalid email is provided"),
+            @ApiResponse(responseCode = "400", description = "Invalid id is provided"),
             @ApiResponse(responseCode = "404", description = "User is not found")})
-    @PatchMapping(value = "/update/{email}")
-    public ResponseEntity<Object> updateUser(@Valid @RequestBody UserUpdateDto userUpdateDto, @PathVariable("email") String email) {
+    @PatchMapping(value = "/update/{id}")
+    public ResponseEntity<Object> updateUser(@Valid @RequestBody UserUpdateDto userUpdateDto, @PathVariable("id") String id) {
         try {
-            userService.updateUser(userUpdateDto, email);
-            log.info("Request to update User with an email : {}", email);
-            return new ResponseEntity<>("User " + userUpdateDto.getFullName() + "with a given email --> " + email + " -- was successfully updated", HttpStatus.OK);
+            userService.updateUser(userUpdateDto, id);
+            log.info("Request to update User with an id : {}", id);
+            return new ResponseEntity<>("User " + userUpdateDto.getFullName() + "with a given id --> " + id + " -- was successfully updated", HttpStatus.OK);
         } catch (NoSuchUserFoundException e) {
-            log.error("User with such an email was not found!");
-            return new ResponseEntity<>(email + "User with an email --> {} was not found!", HttpStatus.NOT_FOUND);
+            log.error("User with such an id was not found!");
+            return new ResponseEntity<>(id + "User with an id --> {} was not found!", HttpStatus.NOT_FOUND);
         }
     }
 
     @Operation(summary = "Delete user by changing the status to INACTIVE")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "User's status is changed to INACTIVE successfully"),
-            @ApiResponse(responseCode = "404", description = "User is not found!"),
+            @ApiResponse(responseCode = "404", description = "User with a given id is not found!"),
             @ApiResponse(responseCode = "409", description = "User is already INACTIVE")})
-    @DeleteMapping(value = "/deactivate/{email}")
-    public ResponseEntity<Object> deactivateUser(@PathVariable("email") String email) {
+    @DeleteMapping(value = "/deactivate/{id}")
+    public ResponseEntity<Object> deactivateUser(@PathVariable("id") String id) {
         try {
-            if (!userService.isStatusActive(email)) {
-                log.warn("User {} is already deactivated!", email);
-                return new ResponseEntity<>("User with an email --> " + email + " is already deactivated!", HttpStatus.CONFLICT);
+            if (!userService.isStatusActive(id)) {
+                log.warn("User {} is already deactivated!", id);
+                return new ResponseEntity<>("User with an id --> " + id + " is already deactivated!", HttpStatus.CONFLICT);
             } else {
-                userService.deactivateUser(email);
-                log.info("Deactivate user with an email {}", email);
-                return new ResponseEntity<>("User with an email -->  " + email + " was deactivated!", HttpStatus.OK);
+                userService.deactivateUser(id);
+                log.info("Deactivate user with an id {}", id);
+                return new ResponseEntity<>("User with an id -->  " + id + " was deactivated!", HttpStatus.OK);
             }
         } catch (NoSuchUserFoundException e) {
-            log.error("User with an email {} doesn't exist !!! ", email);
-            return new ResponseEntity<>("User with such an email --> " + email + " doesn't exist!", HttpStatus.NOT_FOUND);
+            log.error("User with an id {} doesn't exist !!! ", id);
+            return new ResponseEntity<>("User with such an id --> " + id + " doesn't exist!", HttpStatus.NOT_FOUND);
         }
     }
 }

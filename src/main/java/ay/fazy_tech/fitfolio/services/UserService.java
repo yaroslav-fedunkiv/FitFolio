@@ -13,10 +13,11 @@ import java.util.Optional;
 @Service
 public interface UserService {
     Optional<UserFullDto> createUser(UserCreateDto userCreateDto);
-    UserFullDto deactivateUser(String phoneNumber);
+    UserFullDto deactivateUser(String id);
+    Optional<UserFullDto> getUserById(String id);
     Optional<UserFullDto> getUserByEmail(String email);
-    UserUpdateDto updateUser(UserUpdateDto userUpdateDto, String email);
+    UserUpdateDto updateUser(UserUpdateDto userUpdateDto, String id);
     List<UserFullDto> getAllUsers();
-    boolean isStatusActive(String email);
+    boolean isStatusActive(String id);
     boolean subscribe(Long followerId, Long userId);
 }

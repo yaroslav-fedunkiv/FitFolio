@@ -50,16 +50,27 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public UserFullDto deactivateUser(String email) {
-        log.info("Start method deactivateUser with the email {}", email);
-        UserFullDto userDto = getUserByEmail(email).orElseThrow();
+    public UserFullDto deactivateUser(String id) {
+        log.info("Start method deactivateUser with the id {}", id);
+        UserFullDto userDto = getUserById(id).orElseThrow();
         Optional<User> user = userRepository.findById(Long.valueOf((userDto.getId())));
         user.orElseThrow().setIsActive(false);
         User deactivatedUser = userRepository.save(user.orElseThrow());
-        log.info("User {} is deactivated", email);
+        log.info("User {} is deactivated", id);
         return mapper.map(deactivatedUser, UserFullDto.class);
     }
 
+    @Transactional
+    @Override
+    public Optional<UserFullDto> getUserById(String id) {
+        log.info("Start method getUserById with the id: {}", id);
+        try {
+            return Optional.of(mapper.map(userRepository.findById(Long.valueOf(id)), UserFullDto.class));
+        } catch (IllegalArgumentException ex) {
+            log.info("User with the id {} wasn't found! ", id);
+            throw new NoSuchUserFoundException();
+        }
+    }
     @Transactional
     @Override
     public Optional<UserFullDto> getUserByEmail(String email) {
@@ -71,12 +82,11 @@ public class UserServiceImpl implements UserService {
             throw new NoSuchUserFoundException();
         }
     }
-
     @Transactional
     @Override
-    public UserUpdateDto updateUser(UserUpdateDto userUpdateDto, String email) {
-        UserFullDto fullDto = getUserByEmail(email).orElseThrow();
-        log.info("Start method updateUser by email : {}", email);
+    public UserUpdateDto updateUser(UserUpdateDto userUpdateDto, String id) {
+        UserFullDto fullDto = getUserById(id).orElseThrow();
+        log.info("Start method updateUser by id : {}", id);
         Optional<User> user = userRepository.findById(Long.valueOf((fullDto.getId())));
 
         String newFullName = userUpdateDto.getFullName() == null ? fullDto.getFullName() : userUpdateDto.getFullName();
@@ -102,9 +112,9 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public boolean isStatusActive(String email) {
-        log.info("Start method isStatusActive with an email {} is active", email);
-        return Boolean.parseBoolean(String.valueOf(getUserByEmail(email).orElseThrow().getIsActive().equals("true")));
+    public boolean isStatusActive(String id) {
+        log.info("Start method isStatusActive with an id {} is active", id);
+        return Boolean.parseBoolean(String.valueOf(getUserById(id).orElseThrow().getIsActive().equals("true")));
     }
 
 }

@@ -2,6 +2,7 @@ package ay.fazy_tech.fitfolio.services;
 
 import ay.fazy_tech.fitfolio.dtos.exercise_template.ExerciseTemplateCreateDto;
 import ay.fazy_tech.fitfolio.dtos.exercise_template.ExerciseTemplateFullDto;
+import ay.fazy_tech.fitfolio.dtos.exercise_template.ExerciseTemplateUpdateDto;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,10 +12,15 @@ import java.util.Optional;
  */
 public interface ExerciseTemplateService {
 
-    void createExerciseTemplate (ExerciseTemplateCreateDto exerciseTemplateCreateDto);
-    Optional<ExerciseTemplateFullDto> getExerciseTemplate (String id);
-    List<ExerciseTemplateFullDto> getAllExerciseTemplate ();
+    void createExerciseTemplate(ExerciseTemplateCreateDto exerciseTemplateCreateDto);
 
-    void updateExerciseTemplate (ExerciseTemplateCreateDto exerciseTemplateCreateDto);
-    void deleteExerciseTemplate (String id);
+    Optional<ExerciseTemplateFullDto> getExerciseTemplate(String id);
+
+    List<ExerciseTemplateFullDto> getAllExerciseTemplate();
+
+    ExerciseTemplateUpdateDto updateExerciseTemplateUpdate (ExerciseTemplateUpdateDto exerciseTemplateUpdateDto, String id);
+
+    ExerciseTemplateFullDto deactivateExerciseTemplate(String id);
+
+    public boolean isStatusActive(String id);
 }

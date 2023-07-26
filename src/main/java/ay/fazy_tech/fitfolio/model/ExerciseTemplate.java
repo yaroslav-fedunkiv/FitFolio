@@ -36,4 +36,6 @@ public class ExerciseTemplate {
     private List<Exercise> exercise;
     @ManyToMany(mappedBy = "exerciseTemplates")
     private List<Client> clients;
+    @Column(columnDefinition = "boolean default true")
+    private Boolean isActive;
 }
