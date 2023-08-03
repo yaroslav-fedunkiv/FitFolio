@@ -4,7 +4,9 @@ import ay.fazy_tech.fitfolio.dtos.user.UserCreateDto;
 import ay.fazy_tech.fitfolio.dtos.user.UserFullDto;
 import ay.fazy_tech.fitfolio.dtos.user.UserUpdateDto;
 import ay.fazy_tech.fitfolio.exceptions.NoSuchUserFoundException;
+import ay.fazy_tech.fitfolio.model.Client;
 import ay.fazy_tech.fitfolio.model.User;
+import ay.fazy_tech.fitfolio.repositories.ClientRepository;
 import ay.fazy_tech.fitfolio.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -22,17 +24,18 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
     private final ModelMapper mapper;
     private final UserRepository userRepository;
+    private final ClientRepository clientRepository;
 
     @Override
     public boolean subscribe(Long followerId, Long userId) {
-        User follower = userRepository.findById(followerId).orElseThrow();
-        User user = userRepository.findById(userId).orElseThrow();
+        Client follower = clientRepository.findById(followerId).orElseThrow();
+        Client user = clientRepository.findById(userId).orElseThrow();
 
         follower.getFollowing().add(user);
         user.getFollowers().add(follower);
 
-        userRepository.save(follower);
-        userRepository.save(user);
+        clientRepository.save(follower);
+        clientRepository.save(user);
         return true;
     }
 
@@ -91,11 +94,11 @@ public class UserServiceImpl implements UserService {
 
         String newFullName = userUpdateDto.getFullName() == null ? fullDto.getFullName() : userUpdateDto.getFullName();
         String newEmail = userUpdateDto.getNewEmail() == null ? fullDto.getEmail() : userUpdateDto.getNewEmail();
-        String newWeight = userUpdateDto.getWeight() == null ? fullDto.getWeight() : userUpdateDto.getWeight();
+//        String newWeight = userUpdateDto.getWeight() == null ? fullDto.getWeight() : userUpdateDto.getWeight();
 
         user.orElseThrow().setEmail(newEmail);
         user.orElseThrow().setFullName(newFullName);
-        user.orElseThrow().setWeight(Double.parseDouble(newWeight));
+//        user.orElseThrow().setWeight(Double.parseDouble(newWeight));
 
         User updatedUser = userRepository.save(user.orElseThrow());
         return mapper.map(updatedUser, UserUpdateDto.class);

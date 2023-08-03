@@ -8,10 +8,6 @@ import lombok.*;
 @NoArgsConstructor
 @ToString
 public class UserUpdateDto {
-
     private String newEmail;
     private String fullName;
-    private String weight;
-    private String coachId; //todo
-
 }

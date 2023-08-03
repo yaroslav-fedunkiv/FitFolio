@@ -35,10 +35,11 @@ public class ClientServiceImpl implements ClientService {
     public Optional<ClientFullDto> createClient(ClientCreateDto clientCreateDto) {
         log.info("Start method createClient with user id {}", clientCreateDto.getUserId());
         User user = userRepository.findById(clientCreateDto.getUserId()).orElseThrow(() -> new IllegalArgumentException("User not found"));
-        Client client = new Client();
+        Client client = mapper.map(clientCreateDto, Client.class);
         client.setUser(user);
         clientRepository.save(client);
         log.info("Client with the user ID {} is created successfully", clientCreateDto.getUserId());
+        log.warn("Created client --> " + clientRepository.findById(clientCreateDto.getUserId()));
         return getClientById(String.valueOf(client.getId()));
     }
 
@@ -62,7 +63,7 @@ public class ClientServiceImpl implements ClientService {
         log.info("Start method updateClient by id : {}", id);
         Optional<Client> client = clientRepository.findById(Long.valueOf((fullDto.getId())));
 
-        List<Workout> workoutsList = clientFullDto.getWorkouts() == null ? fullDto.getWorkouts() : clientFullDto.getWorkouts();
+//        List<Workout> workoutsList = clientFullDto.getWorkouts() == null ? fullDto.getWorkouts() : clientFullDto.getWorkouts();
 
 //        client.orElseThrow().setCoaches(coachesList);
 //        client.orElseThrow().setWorkouts(workoutsList);

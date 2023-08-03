@@ -38,10 +38,6 @@ public class FitFolioApplication {
             userCreateDto.setUserName("zelenka");
             userCreateDto.setUserRole("CLIENT_ROLE");
             userCreateDto.setEmail("zelener@gmail.com");
-            userCreateDto.setSex("FEMALE");
-            userCreateDto.setDob("2000-01-01");
-            userCreateDto.setWeight(Double.parseDouble("55"));
-            userCreateDto.setHeight(Integer.parseInt("170"));
             userCreateDto.setPassword("Password12345");
             userCreateDto.setPasswordConfirmed("Password12345");
             userService.createUser(userCreateDto);
@@ -51,29 +47,31 @@ public class FitFolioApplication {
             userCreateDto2.setUserName("yarek");
             userCreateDto2.setUserRole("CLIENT_ROLE");
             userCreateDto2.setEmail("yarek@gmail.com");
-            userCreateDto2.setSex("MALE");
-            userCreateDto2.setDob("2000-01-01");
-            userCreateDto2.setWeight(Double.parseDouble("65"));
-            userCreateDto2.setHeight(Integer.parseInt("185"));
             userCreateDto2.setPassword("Password12345");
             userCreateDto2.setPasswordConfirmed("Password12345");
             userService.createUser(userCreateDto2);
 
-            userService.subscribe(1L, 2L);
-            log.info("finish subscribe process");
-
             UserFullDto user = userService.getUserByEmail(userCreateDto.getEmail()).orElseThrow();
-
             UserFullDto user2 = userService.getUserByEmail(userCreateDto2.getEmail()).orElseThrow();
 
-            log.info(user);
-            log.info(user2);
-            ClientCreateDto clientCreateDto = new ClientCreateDto();
-            log.info("userID ===>> " + user.getId());
-            log.info("user2ID ===>> " + user2.getId());
-            clientCreateDto.setUserId(Long.valueOf(user.getId()));
-            clientService.createClient(clientCreateDto);
+            ClientCreateDto annClient = new ClientCreateDto();
+            annClient.setUserId(user.getId());
+            annClient.setSex("FEMALE");
+            annClient.setDob("2000-01-01");
+            annClient.setWeight("55");
+            annClient.setHeight("170");
+            clientService.createClient(annClient);
 
+            ClientCreateDto slavikClient = new ClientCreateDto();
+            slavikClient.setUserId(user2.getId());
+            slavikClient.setSex("MALE");
+            slavikClient.setDob("2000-01-01");
+            slavikClient.setWeight("65");
+            slavikClient.setHeight("185");
+            clientService.createClient(slavikClient);
+
+            userService.subscribe(1L, 2L);
+            log.info("finish subscribe process");
 
             ExerciseTemplateCreateDto exerciseTemplate = new ExerciseTemplateCreateDto();
 
@@ -107,8 +105,6 @@ public class FitFolioApplication {
             workoutProgramService.createWorkoutProgram(workoutProgramCreateDto);
             workoutProgramService.createProgram(1L, 1L);
             workoutProgramService.addProgramToClient(1L, 1L);
-
-
         };
     }
 

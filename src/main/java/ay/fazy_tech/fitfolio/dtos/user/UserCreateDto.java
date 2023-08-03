@@ -22,17 +22,8 @@ public class UserCreateDto {
     @Email
     private String email;
     @NotNull
-    private String sex;
-    @NotBlank
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private String dob;
-    @NotNull
-    private int height;
-    @NotNull
-    private double weight;
-    @NotNull
-    //  @Size(min = 6, max = 20)
-    //  @Pattern(regexp = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})")
+    @Size(min = 6, max = 20)
+    @Pattern(regexp = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})")
     private String password;
     private String passwordConfirmed;
 }

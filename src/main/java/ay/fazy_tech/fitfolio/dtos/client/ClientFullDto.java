@@ -17,7 +17,9 @@ import java.util.List;
 @ToString
 public class ClientFullDto {
     private String id;
-    private List<Workout> workouts;
     private String userId;
-    private List<WorkoutProgram> workoutProgram; //todo
+    private String dob;
+    private String height;
+    private String weight;
+    private String sex;
 }
